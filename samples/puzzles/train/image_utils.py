@@ -234,7 +234,7 @@ def rotate_segmentation_mask(center_x, center_y, transparent_image, degrees, x_c
     return x_coords_rotated, y_coords_rotated
 
 
-def add_training_sample(sample_number, background_image, cropped_image_dict, new_image_dict):
+def add_training_sample(sample_number, background_image, cropped_image_dict, new_image_dict, random_angle=None):
     # Load background image.
     background = Image.open(background_image)
 
@@ -259,8 +259,12 @@ def add_training_sample(sample_number, background_image, cropped_image_dict, new
         file_name = "images/cropped/puzzle_" + str(class_id) + '.png'
         loaded_image = Image.open(file_name).convert("RGBA")
 
-        # Create rotated image and save to file.
-        rotation_degrees = get_random_angle()
+        if random_angle is None:
+            # Create rotated image and save to file.
+            rotation_degrees = get_random_angle()
+        else:
+            rotation_degrees = random_angle
+        print("Rotation angle: ", rotation_degrees)
         rotated_image_file_path, center_x, center_y, rotated_image = create_rotated_image(loaded_image,
                                                                                           rotation_degrees, file_name)
         # Get position

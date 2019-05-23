@@ -18,8 +18,9 @@ keys = cropped_image_dict["_via_img_metadata"].keys()
 
 # Take new cropped images and paste them in random positions and orientations on the background image.
 # Since it is not feasible to hand annotate enough training examples automate sample creation.
-for sample_number in range(1, 20):
-    iu.add_training_sample(sample_number, 'images/background_1024.jpg', cropped_image_dict, new_image_dict)
+for sample_number in range(1, 360):
+    iu.add_training_sample(sample_number, 'images/background_1024.jpg', cropped_image_dict, new_image_dict,
+                           sample_number)
 
 iu.dump_dict_to_json(new_image_dict, 'puzzle_val.json')
 print("train puzzles complete...")
