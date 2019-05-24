@@ -146,7 +146,7 @@ class PuzzlesDataset(utils.Dataset):
             # TODO: Will reference these from the annotation file.  Current training set contains all classes per image.
             # This will change later.
             class_ids = np.array([1, 2, 3, 4, 5, 6, 7, 8])
-
+            # TODO: add angle argument.
             self.add_image(
                 "puzzles",
                 image_id=a['filename'],  # use file name as a unique image id
